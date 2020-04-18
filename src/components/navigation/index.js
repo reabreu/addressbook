@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { selectActiveLanguage } from "../../features/settings/settings-slice";
 import { Ul, Li, NavbarLink, Nav } from "./styles";

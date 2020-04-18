@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { createSelector } from "reselect";
 
 export const usersSlice = createSlice({
   name: "settings",
@@ -15,7 +16,13 @@ export const usersSlice = createSlice({
 
 export const { setActiveLanguage } = usersSlice.actions;
 
-export const selectActiveLanguage = (state) => state.settings.active;
+const getSettings = (state) => state.settings;
+
+export const selectActiveLanguage = createSelector(
+  getSettings,
+  (settings) => settings.active
+);
+
 export const selectLanguages = (state) => state.settings.languages;
 
 export default usersSlice.reducer;

@@ -1,38 +1,42 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { createSelector } from "reselect";
-import { selectUsers, fetchUsers } from "./users-slice";
+import debounce from "lodash.debounce";
+import {
+  selectUsersPerLang,
+  fetchUsers,
+  selectPagesFetch,
+  selectStatus,
+} from "./users-slice";
 import { selectActiveLanguage } from "../settings/settings-slice";
-import { Ol, Li, Thumbnail } from "./styles";
-
-const filterUsersPerLang = (users, activeLanguage) =>
-  users.filter((user) => user.nat === activeLanguage);
-
-// If this selector were to be used in many components we chould hoist it to its own module
-// leaving if here for now
-const selectUsersPerLang = createSelector(
-  selectUsers,
-  selectActiveLanguage,
-  filterUsersPerLang
-);
+import { Ol, Li, Thumbnail, Loading, Loader } from "./styles";
+import { useInView } from "react-intersection-observer";
 
 export default () => {
   const dispatch = useDispatch();
   const activeLanguage = useSelector(selectActiveLanguage);
   const filteredUsers = useSelector(selectUsersPerLang);
+  const pagesFetch = useSelector(selectPagesFetch);
+  const [ref, inView] = useInView({ rootMargin: "600px 0px" });
 
   useEffect(() => {
-    if (!filteredUsers.length) dispatch(fetchUsers(activeLanguage));
-  });
+    if (inView) dispatch(fetchUsers(activeLanguage, pagesFetch + 1));
+  }, [inView]);
 
   return (
-    <Ol>
-      {filteredUsers.map(({ name, picture }, index) => (
-        <Li key={`${name.first}-${index}`}>
-          <Thumbnail src={picture.thumbnail} />
-          <p>{name.first}</p>
-        </Li>
-      ))}
-    </Ol>
+    <>
+      <Ol>
+        {filteredUsers.map(({ name, picture }, index) => (
+          <Li key={`${name.first}-${index}`}>
+            <Thumbnail src={picture.thumbnail} />
+            <p>{name.first}</p>
+          </Li>
+        ))}
+      </Ol>
+      {filteredUsers.length < 1000 ? (
+        <Loading ref={ref}>
+          <Loader />
+        </Loading>
+      ) : null}
+    </>
   );
 };
