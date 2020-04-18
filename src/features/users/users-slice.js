@@ -18,10 +18,12 @@ export const usersSlice = createSlice({
 
 export const { add, setFetchingStatus } = usersSlice.actions;
 
-export const fetchUsers = () => async (dispatch) => {
+export const fetchUsers = (activeLanguage) => async (dispatch) => {
   dispatch(setFetchingStatus());
 
-  const request = await fetch("https://randomuser.me/api/?results=50");
+  const request = await fetch(
+    `https://randomuser.me/api/?results=50&nat=${activeLanguage.toLowerCase()}`
+  );
   const res = await request.json();
 
   dispatch(add(res.results));

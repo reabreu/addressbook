@@ -18,9 +18,12 @@ export default () => {
         Your active language is {`${activeLanguage}`}, use the select box bellow
         to change this
       </p>
-      <select onChange={(e) => dispatch(setActiveLanguage(e.target.value))}>
+      <select
+        defaultValue={activeLanguage}
+        onChange={(e) => dispatch(setActiveLanguage(e.target.value))}
+      >
         {languages.map((lang) => (
-          <option selected={lang === activeLanguage} value={lang}>
+          <option key={lang} value={lang}>
             {lang}
           </option>
         ))}
