@@ -19,8 +19,10 @@ export const usersSlice = createSlice({
   },
 });
 
+/* Actions */
 export const { add, setFetchingStatus } = usersSlice.actions;
 
+/* Thunks */
 export const fetchUsers = (activeLanguage, pageNumber) => async (dispatch) => {
   const request = await fetch(
     `https://randomuser.me/api/?results=${RESULTS_PER_PAGE}&seed=abc&nat=${activeLanguage.toLowerCase()}&page=${pageNumber}`
@@ -30,6 +32,7 @@ export const fetchUsers = (activeLanguage, pageNumber) => async (dispatch) => {
   dispatch(add(res.results));
 };
 
+/* Selectors */
 const selectUsers = (state) => state.users.values;
 
 export const selectUsersPerLang = createSelector(
