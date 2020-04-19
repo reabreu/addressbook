@@ -14,6 +14,10 @@ export const Li = styled.li`
     cursor: pointer;
     background-color: lightgray;
   }
+
+  > * {
+    margin-right: 10px;
+  }
 `;
 
 export const Ol = styled.ol`
