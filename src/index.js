@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
-import { createGlobalStyle } from "styled-components";
 import store from "./store";
 import Router from "./features/router";
 import GlobalStyle from "./global-styles";

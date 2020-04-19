@@ -12,6 +12,8 @@ import UserDetailsModal from "./UserDetailsModal";
 import UserList from "./UserList";
 import UserLoadingTrigger from "./UserLoadingTrigger";
 
+const MAX_USERS = 1000;
+
 export default () => {
   const dispatch = useDispatch();
   const activeLanguage = useSelector(selectActiveLanguage);
@@ -40,7 +42,8 @@ export default () => {
       />
       <UserLoadingTrigger
         element={ref}
-        showLoader={filteredUsers.length < 1000 && searchTerm === ""}
+        showLoader={filteredUsers.length < MAX_USERS && searchTerm === ""}
+        showEndResults={filteredUsers.length === MAX_USERS && searchTerm === ""}
       />
     </>
   );

@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<UserList /> spec Matches snapshot 1`] = `
+<DocumentFragment>
+  <ol
+    class="sc-AxirZ eUZEIa"
+  >
+    <li
+      class="sc-AxjAm ifexeG"
+    >
+      <img
+        class="sc-AxiKw kZEUQE"
+        src="https://randomuser.me/api/portraits/thumb/women/88.jpg"
+      />
+      <p>
+        Leah Woods
+      </p>
+      <p>
+        angryostrich988
+      </p>
+      <p>
+        leah.woods@example.com
+      </p>
+    </li>
+    <li
+      class="sc-AxjAm ifexeG"
+    >
+      <img
+        class="sc-AxiKw kZEUQE"
+        src="https://randomuser.me/api/portraits/thumb/women/77.jpg"
+      />
+      <p>
+        Julia Jimenez
+      </p>
+      <p>
+        happyostrich517
+      </p>
+      <p>
+        julia.jimenez@example.com
+      </p>
+    </li>
+    <li
+      class="sc-AxjAm ifexeG"
+    >
+      <img
+        class="sc-AxiKw kZEUQE"
+        src="https://randomuser.me/api/portraits/thumb/women/82.jpg"
+      />
+      <p>
+        Sophia Johnston
+      </p>
+      <p>
+        heavyostrich778
+      </p>
+      <p>
+        sophia.johnston@example.com
+      </p>
+    </li>
+  </ol>
+</DocumentFragment>
+`;

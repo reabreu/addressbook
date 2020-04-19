@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Navigation /> spec Matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="sc-AxirZ kXLBxR"
+  >
+    <nav
+      class="sc-AxjAm eRCOtq"
+    >
+      <div
+        class="sc-AxiKw eVuaxy"
+      >
+        <li
+          class="sc-AxhCb cbjXGh"
+        >
+          <a
+            class="sc-AxhUy liakIm"
+            href="/"
+          >
+            Home
+          </a>
+        </li>
+        <li
+          class="sc-AxhCb cbjXGh"
+        >
+          <a
+            class="sc-AxhUy liakIm"
+            href="/settings"
+          >
+            Settings
+          </a>
+        </li>
+        <li
+          class="sc-AxhCb cbjXGh"
+        >
+          <input
+            class="sc-AxgMl bMeUUL"
+            placeholder="Search something here"
+          />
+        </li>
+      </div>
+      <p>
+        Active language is GB
+      </p>
+    </nav>
+  </div>
+</DocumentFragment>
+`;

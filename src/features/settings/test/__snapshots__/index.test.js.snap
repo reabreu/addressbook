@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Settings /> spec Matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="sc-AxjAm jnqzAZ"
+  >
+    <p>
+      Your active language is GB, use the select box bellow to change this
+    </p>
+    <select>
+      <option
+        value="CH"
+      >
+        CH
+      </option>
+      <option
+        value="ES"
+      >
+        ES
+      </option>
+      <option
+        value="FR"
+      >
+        FR
+      </option>
+      <option
+        selected=""
+        value="GB"
+      >
+        GB
+      </option>
+    </select>
+  </div>
+</DocumentFragment>
+`;
