@@ -8,6 +8,13 @@ export const Nav = styled.nav`
   justify-content: space-between;
   padding: 0 15px 0 0;
   color: white;
+  position: fixed;
+  width: 100%;
+  box-sizing: border-box;
+`;
+
+export const NavWrapper = styled.div`
+  min-height: 60px;
 `;
 
 export const Ul = styled.div`

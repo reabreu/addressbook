@@ -1,17 +1,18 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Navbar from "../navigation";
-import { HomePage, SettingsPage } from "../../pages";
+import UsersList from "../users";
+import SettingsPanel from "../settings";
 
 export default () => (
   <Router>
     <Navbar />
     <Switch>
       <Route path="/settings">
-        <SettingsPage />
+        <SettingsPanel />
       </Route>
       <Route path="/">
-        <HomePage />
+        <UsersList />
       </Route>
     </Switch>
   </Router>
