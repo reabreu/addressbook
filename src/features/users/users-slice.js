@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { createSelector } from "reselect";
 import { selectActiveLanguage } from "../settings/settings-slice";
+import { selectSearchTerm } from "../navigation/search-slice";
 
 const RESULTS_PER_PAGE = 50;
 
@@ -13,14 +14,11 @@ export const usersSlice = createSlice({
     add: (state, action) => {
       state.values.push(...action.payload);
     },
-    setFetchingStatus: (state, action) => {
-      state.status = action.payload;
-    },
   },
 });
 
 /* Actions */
-export const { add, setFetchingStatus } = usersSlice.actions;
+export const { add } = usersSlice.actions;
 
 /* Thunks */
 export const fetchUsers = (activeLanguage, pageNumber) => async (dispatch) => {
@@ -35,10 +33,21 @@ export const fetchUsers = (activeLanguage, pageNumber) => async (dispatch) => {
 /* Selectors */
 const selectUsers = (state) => state.users.values;
 
-export const selectUsersPerLang = createSelector(
+const selectUsersPerLang = createSelector(
   selectUsers,
   selectActiveLanguage,
   (users, activeLanguage) => users.filter((user) => user.nat === activeLanguage)
+);
+
+export const selectUsersPerLangAndSearch = createSelector(
+  selectUsersPerLang,
+  selectSearchTerm,
+  (users, searchTerm) =>
+    users.filter((user) => {
+      const name = `${user.name.first} ${user.name.last}`.toLocaleLowerCase();
+      const search = searchTerm.toLocaleLowerCase();
+      return name.startsWith(search);
+    })
 );
 
 export const selectPagesFetch = createSelector(

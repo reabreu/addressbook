@@ -36,3 +36,11 @@ export const NavbarLink = styled(Link)`
     color: black;
   }
 `;
+
+export const SearchInput = styled.input`
+  border: 1px solid darkgray;
+  width: 400px;
+  padding: 3px 8px;
+  font-size: 14px;
+  border-radius: 5px;
+`;

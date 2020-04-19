@@ -1,12 +1,21 @@
 import React from "react";
-import styled from "styled-components";
+import { useLocation } from "react-router-dom";
+import { SearchInput } from "./styles";
+import { setSearchTerm } from "./search-slice";
+import { useDispatch } from "react-redux";
+import debounce from "lodash.debounce";
 
-const Input = styled.input`
-  border: 1px solid darkgray;
-  width: 400px;
-  padding: 3px 8px;
-  font-size: 14px;
-  border-radius: 5px;
-`;
+const SEARCH_DEBOUNCE_INTERVAL = 300;
 
-export default () => <Input placeholder="Search something here" />;
+export default () => {
+  const location = useLocation();
+  const dispatch = useDispatch();
+  const debouncedDispatch = debounce(dispatch, SEARCH_DEBOUNCE_INTERVAL);
+
+  return location.pathname === "/" ? (
+    <SearchInput
+      onChange={(e) => debouncedDispatch(setSearchTerm(e.target.value))}
+      placeholder="Search something here"
+    />
+  ) : null;
+};
