@@ -43,7 +43,7 @@ export default () => {
   const isFetching = status === STATUS.FETCHING;
 
   const setRef = !maxUsersReached && searchNotSet && !fetchError && !isFetching;
-  const showLoader = !fetchError && !maxUsersReached;
+  const showLoader = !fetchError && !maxUsersReached && searchNotSet;
   const showEndCatalogMessage = maxUsersReached && searchNotSet;
 
   // Only set ref for intersection observer if we fulfill the conditions on wich it should auto fire

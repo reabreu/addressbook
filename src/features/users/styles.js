@@ -34,7 +34,6 @@ export const Thumbnail = styled.img`
 
 export const Loading = styled.div`
   box-sizing: border-box;
-  border: 1px solid lightgray;
   height: 58px;
   text-align: center;
   line-height: 54px;
