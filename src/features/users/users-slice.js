@@ -5,33 +5,51 @@ import { selectSearchTerm } from "../navigation/search-slice";
 
 const RESULTS_PER_PAGE = 50;
 
+export const STATUS = {
+  FETCHING: "fetching",
+  IDLE: "idle",
+  ERROR: "error",
+};
+
 export const usersSlice = createSlice({
   name: "users",
   initialState: {
     values: [],
+    status: STATUS.IDLE,
   },
   reducers: {
     add: (state, action) => {
       state.values.push(...action.payload);
     },
+    setStatus: (state, action) => {
+      state.status = action.payload;
+    },
   },
 });
 
 /* Actions */
-export const { add } = usersSlice.actions;
+export const { add, setStatus } = usersSlice.actions;
 
 /* Thunks */
 export const fetchUsers = (activeLanguage, pageNumber) => async (dispatch) => {
-  const request = await fetch(
-    `https://randomuser.me/api/?results=${RESULTS_PER_PAGE}&seed=abc&nat=${activeLanguage.toLowerCase()}&page=${pageNumber}`
-  );
-  const res = await request.json();
+  dispatch(setStatus(STATUS.FETCHING));
 
-  dispatch(add(res.results));
+  try {
+    const request = await fetch(
+      `https://randomuser.me/api/?results=${RESULTS_PER_PAGE}&seed=abc&nat=${activeLanguage.toLowerCase()}&page=${pageNumber}`
+    );
+    const res = await request.json();
+
+    dispatch(setStatus(STATUS.IDLE));
+    dispatch(add(res.results));
+  } catch (error) {
+    dispatch(setStatus(STATUS.ERROR));
+  }
 };
 
 /* Selectors */
 const selectUsers = (state) => state.users.values;
+export const selectStatus = (state) => state.users.status;
 
 const selectUsersPerLang = createSelector(
   selectUsers,
@@ -42,12 +60,13 @@ const selectUsersPerLang = createSelector(
 export const selectUsersPerLangAndSearch = createSelector(
   selectUsersPerLang,
   selectSearchTerm,
-  (users, searchTerm) =>
-    users.filter((user) => {
+  (users, searchTerm) => {
+    return users.filter((user) => {
       const name = `${user.name.first} ${user.name.last}`.toLocaleLowerCase();
       const search = searchTerm.toLocaleLowerCase();
       return name.startsWith(search);
-    })
+    });
+  }
 );
 
 export const selectPagesFetch = createSelector(
