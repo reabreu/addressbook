@@ -1,7 +1,10 @@
 import React from "react";
-import { Table, Tr, Thumbnail, ImageCell, Th } from "./styles";
+import { Table, Th } from "./styles";
+import UserRow from "./UserRow";
 
-export default ({ users, setSelectedUser, setIsOpen }) => {
+const MemoizedUserRow = React.memo(UserRow);
+
+export default ({ users, openModal, setFavorite }) => {
   return (
     <Table>
       <thead>
@@ -10,51 +13,20 @@ export default ({ users, setSelectedUser, setIsOpen }) => {
           <Th>Name</Th>
           <Th>Username</Th>
           <Th>email</Th>
+          <Th></Th>
         </tr>
       </thead>
       <tbody>
-        {users.map(({ name, picture, login, email }, index) => (
-          <Tr
-            key={`${name.first}-${index}`}
-            onClick={() => {
-              setSelectedUser(users[index]);
-              setIsOpen(true);
-            }}
-          >
-            <ImageCell>
-              <Thumbnail src={picture.thumbnail} />
-            </ImageCell>
-            <td>
-              <p>{`${name.first} ${name.last}`}</p>
-            </td>
-            <td>
-              <p>{login.username}</p>
-            </td>
-            <td>
-              <p>{email}</p>
-            </td>
-          </Tr>
+        {users.map((user, index) => (
+          <MemoizedUserRow
+            key={user.id.value}
+            setFavorite={setFavorite}
+            index={index}
+            onClick={openModal}
+            user={user}
+          />
         ))}
       </tbody>
     </Table>
   );
 };
-
-// (
-//   <Ol>
-//     {users.map(({ name, picture, login, email }, index) => (
-//       <Li
-//         key={`${name.first}-${index}`}
-//         onClick={() => {
-//           setSelectedUser(users[index]);
-//           setIsOpen(true);
-//         }}
-//       >
-//         <Thumbnail src={picture.thumbnail} />
-//         <p>{`${name.first} ${name.last}`}</p>
-//         <p>{login.username}</p>
-//         <p>{email}</p>
-//       </Li>
-//     ))}
-//   </Ol>
-// )

@@ -19,16 +19,24 @@ export const usersSlice = createSlice({
   },
   reducers: {
     add: (state, action) => {
-      state.values.push(...action.payload);
+      const newUsers = action.payload.map((user) => ({
+        favorite: false,
+        ...user,
+      }));
+      state.values.push(...newUsers);
     },
     setStatus: (state, action) => {
       state.status = action.payload;
+    },
+    setFavorite: (state, action) => {
+      const user = state.values[action.payload.index];
+      user.favorite = !user.favorite;
     },
   },
 });
 
 /* Actions */
-export const { add, setStatus } = usersSlice.actions;
+export const { add, setStatus, setFavorite } = usersSlice.actions;
 
 /* Thunks */
 export const fetchUsers = (activeLanguage, pageNumber) => async (dispatch) => {

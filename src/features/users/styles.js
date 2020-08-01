@@ -37,7 +37,6 @@ export const Loading = styled.div`
   height: 58px;
   text-align: center;
   line-height: 54px;
-  transition: ;
 `;
 
 export const Center = styled.div`
