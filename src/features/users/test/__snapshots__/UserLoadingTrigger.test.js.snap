@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<UserList /> spec Matches initial snapshot with no users and loading spinner 1`] = `
+<DocumentFragment>
+  <div
+    class="sc-AxgMl jOotEa"
+  >
+    <div
+      class="sc-Axmtr bFiunQ"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`<UserList /> spec Shows button on error to allow manual fetch 1`] = `
+<DocumentFragment>
+  <div
+    class="sc-AxgMl jOotEa"
+  >
+    <button>
+      There was an error fetching users, click here to try again
+    </button>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`<UserList /> spec Shows message when current lang is full 1`] = `
+<DocumentFragment>
+  <div
+    class="sc-AxgMl jOotEa"
+  >
+    <label>
+      End of users catalog
+    </label>
+  </div>
+</DocumentFragment>
+`;
