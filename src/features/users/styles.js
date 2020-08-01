@@ -1,33 +1,33 @@
 import styled from "styled-components";
 
-export const Li = styled.li`
-  padding: 3px 10px;
-  margin-bottom: 5px;
-  font-size: 15px;
-  display: flex;
-  align-items: center;
-  border: 1px solid lightgray;
-  background-color: transparent;
+export const Table = styled.table`
+  width: 100%;
+  text-align: center;
+  border-collapse: collapse;
+`;
+
+export const Th = styled.th`
+  padding-bottom: 10px;
+`;
+
+export const Tr = styled.tr`
+  width: 100%;
+  text-align: center;
   transition: background-color 0.35s ease;
 
   &:hover {
     cursor: pointer;
     background-color: lightgray;
   }
-
-  > * {
-    margin-right: 10px;
-  }
 `;
 
-export const Ol = styled.ol`
-  padding: 0 0 5px 0;
-  margin: 0;
+export const ImageCell = styled.td`
+  display: flex;
+  justify-content: center;
 `;
 
 export const Thumbnail = styled.img`
   border-radius: 50%;
-  margin-right: 20px;
   display: block;
   border: 1px solid lightgray;
 `;
