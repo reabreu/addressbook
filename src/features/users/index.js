@@ -18,9 +18,9 @@ export default () => {
   const dispatch = useDispatch();
 
   const setFavMemoized = useCallback(
-    (e, index) => {
+    (e, value) => {
       e.stopPropagation();
-      dispatch(setFavorite({ index }));
+      dispatch(setFavorite({ value }));
     },
     [dispatch]
   );

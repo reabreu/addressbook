@@ -29,7 +29,10 @@ export const usersSlice = createSlice({
       state.status = action.payload;
     },
     setFavorite: (state, action) => {
-      const user = state.values[action.payload.index];
+      const user = state.values.filter(
+        (user) => user.id.value === action.payload.value
+      )[0];
+
       user.favorite = !user.favorite;
     },
   },

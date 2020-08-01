@@ -21,7 +21,7 @@ export default ({ index, setFavorite, onClick, user }) => (
         return
         index={index}
         favorite={user.favorite}
-        setFavorite={(e) => setFavorite(e, index)}
+        setFavorite={(e) => setFavorite(e, user.id.value)}
       />
     </td>
   </Tr>
